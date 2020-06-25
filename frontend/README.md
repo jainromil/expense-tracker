@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.com/jainromil/expense-react-frontend.svg?branch=master)](https://travis-ci.com/jainromil/expense-react-frontend)
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
