@@ -30,8 +30,9 @@ import {
 } from "@material-ui/pickers";
 import axios from "axios";
 import authHeader from "./AuthHeader";
+import { BASE_API_URL } from "./constants";
 
-const API_URL = "https://romilexpense.herokuapp.com/api/";
+const API_URL = BASE_API_URL + "/api/";
 
 class Expenses extends Component {
   emptyItem = {

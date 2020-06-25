@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.com/jainromil/spring-expense-tracker.svg?branch=master)](https://travis-ci.com/jainromil/spring-expense-tracker)
 # Expense Tracker using Spring Boot and React
 
 Expense Tracking application created using Spring Boot and React

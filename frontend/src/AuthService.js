@@ -1,6 +1,7 @@
 import axios from "axios";
+import { BASE_API_URL } from "./constants";
 
-const API_URL = "https://romilexpense.herokuapp.com/api/auth/";
+const API_URL = BASE_API_URL + "/api/auth/";
 
 class AuthService {
   login(email, password) {
