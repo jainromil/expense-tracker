@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import AppNav from "./AppNav";
 import authHeader from "./AuthHeader";
 import axios from "axios";
+import { BASE_API_URL } from "./constants";
 
-const API_URL = "https://romilexpense.herokuapp.com/api/";
+const API_URL = BASE_API_URL + "/api/";
 
 class Category extends Component {
   state = {
