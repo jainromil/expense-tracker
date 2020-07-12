@@ -12,6 +12,9 @@ class AppNav extends Component {
             <Nav.Link href="/categories">Categories</Nav.Link>
             <Nav.Link href="/expenses">Expenses</Nav.Link>
           </Nav>
+          <Nav>
+            <Nav.Link href="/login">Login</Nav.Link>
+          </Nav>
         </Navbar>
       </div>
     );
