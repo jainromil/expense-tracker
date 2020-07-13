@@ -31,6 +31,7 @@ import {
 import axios from "axios";
 import authHeader from "./AuthHeader";
 import { BASE_API_URL } from "./constants";
+import AuthService from "./AuthService";
 
 const API_URL = BASE_API_URL + "/api/";
 
@@ -40,6 +41,7 @@ class Expenses extends Component {
     description: "",
     amount: "",
     category: {},
+    user: {},
   };
 
   constructor(props) {
@@ -69,7 +71,7 @@ class Expenses extends Component {
         });
       });
 
-    axios.get(API_URL + "expenses", {
+    axios.get(API_URL + `expenses/${AuthService.getCurrentUser()}`, {
         headers: authHeader(),
       })
       .then((response) => {
@@ -96,13 +98,28 @@ class Expenses extends Component {
   }
 
   async handleSubmit(event) {
-    const item = this.state.item;
+    event.preventDefault();
+    let email = AuthService.getCurrentUser();
+    await axios.get(API_URL + `user/${email}`, {
+      headers: authHeader(),
+    }).then((response) => {
+      let item = { ...this.state.item };
+      let user = {
+        id: response.data.id,
+        firstName: response.data.firstName,
+        lastName: response.data.lastName,
+        email: response.data.email,
+        password: response.data.password,
+      }
+      item.user = user;
+      this.setState({ item });
+    });
 
+    const item = this.state.item;
     axios.post(API_URL + "expense", item, {
       headers: authHeader(),
     });
 
-    event.preventDefault();
     this.props.history.push("/expenses");
     window.location.reload();
   }

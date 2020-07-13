@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
@@ -21,9 +23,17 @@ public class ExpenseController {
     @Autowired
     private ExpenseRepository expenseRepository;
 
-    @GetMapping("/expenses")
-    Collection<Expense> getExpenses() {
-        return expenseRepository.findAll();
+    @GetMapping("/expenses/{email}")
+    Collection<Expense> getExpenses(@PathVariable String email) {
+        List<Expense> expenses = expenseRepository.findAll();
+        List<Expense> filteredExpenses = new ArrayList<>();
+        for (Expense expense: expenses) {
+            if (expense.getUser().getEmail().equalsIgnoreCase(email)) {
+                filteredExpenses.add(expense);
+            }
+        }
+
+        return filteredExpenses;
     }
 
     @GetMapping("/expense/{id}")
