@@ -44,7 +44,6 @@ class SignIn extends Component {
       password: "",
       loading: false,
       message: "",
-      isValid: true,
       errorTextEmail: "",
       errorTextPassword: "",
     };
@@ -101,12 +100,9 @@ class SignIn extends Component {
       loading: true,
     });
 
-    const isFormValid = this.validateAll();
-    this.setState({
-      isValid: isFormValid,
-    });
+    let isFormValid = this.validateAll();
 
-    if (this.state.isValid) {
+    if (isFormValid) {
       AuthService.login(this.state.email, this.state.password).then(
         () => {
           this.props.history.push("/expenses");

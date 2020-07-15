@@ -52,7 +52,6 @@ class SignUp extends Component {
       errorTextPassword: "",
       errorTextConfirmPassword: "",
       message: "",
-      isValid: true,
     };
 
     this.onChangeFirstName = this.onChangeFirstName.bind(this);
@@ -200,16 +199,10 @@ class SignUp extends Component {
   }
 
   handleSignUp(e) {
-    this.setState({
-      isValid: false,
-    });
+    e.preventDefault();
 
     let isFormValid = this.validateAll();
-    this.setState({
-      isValid: isFormValid,
-    });
-
-    if (this.state.isValid) {
+    if (isFormValid) {
       AuthService.register(
         this.state.firstName,
         this.state.lastName,
@@ -224,7 +217,6 @@ class SignUp extends Component {
             email: "",
             password: "",
             confirmPassword: "",
-            isValid: false,
           });
         },
         (error) => {
@@ -237,13 +229,10 @@ class SignUp extends Component {
 
           this.setState({
             errorTextEmail: resMessage,
-            isValid: false,
           });
         }
       );
     }
-
-    e.preventDefault();
   }
 
   render() {
